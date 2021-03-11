@@ -1,0 +1,7 @@
+instancja.o
+main.o
+Makefile.win
+spdl2.exe
+spdl2.layout
+zadanie.o
+RandomNumberGenerator.o

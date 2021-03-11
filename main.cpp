@@ -10,6 +10,5 @@ int main()
 	inst.wypiszTabele();
 	inst.calculate();
 
-
     return 0;
 }
