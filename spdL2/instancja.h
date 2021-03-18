@@ -11,7 +11,7 @@ public:
 	instancja();
 	void wypiszTabele();
 	int calculate();
-	int Schrage();
+	long* Schrage();
 protected:
 };
 

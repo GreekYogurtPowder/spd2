@@ -87,10 +87,10 @@ int instancja::calculate() {
 
 }
 
-int instancja::Schrage() {
+long* instancja::Schrage() {
 
 	int k = 1; //nr zadania w permutacji 
-
+	long* pi = new long[rozmiar]; //permutacje
 
 	zadanie* tablica_G = new zadanie[rozmiar]; //tablica zadan gotowych do realizacji
 	zadanie* tablica_N = new zadanie[rozmiar]; //tablica zadan nieuszeregowanych
@@ -101,19 +101,64 @@ int instancja::Schrage() {
 		tablica_N[j] = zadanie(tablica[j].j, tablica[j].r, tablica[j].p, tablica[j].q);
 	}
 
-	long t = tablica[0].r; //chwila czasowa
-
-	for (int j = 1; j < rozmiar; j++) {
-
-		if (t > tablica[j].r)
-			t = tablica[j].r;
-
+	for (int i = 0; i < rozmiar; i++) {
+		for (int j = 1; j < rozmiar; j++) {
+			if (tablica_N[j - 1].r > tablica_N[j].r) {
+				swap(tablica_N[j - 1], tablica_N[j]);
+			}
+		}
 	}
 
+	long t = tablica_N[0].r; //chwila czasowa
+	long min_r = tablica_N[0].r;
 
+	int rozmiar_G = 0;
+	int rozmiar_N = rozmiar;
 
-	return 0;
+	while (rozmiar_G != 0 || rozmiar_N != 0) {
 
+		while (rozmiar_N != 0 && min_r <= t) {
 
+			tablica_G[rozmiar_G] = zadanie(tablica_N[0].j, tablica_N[0].r, tablica_N[0].p, tablica_N[0].q); //tablica_N[0]
+			rozmiar_G++;
 
+			for (int j = 0; j < rozmiar_N - 1; j++) { //przesuwanie w celu usuniecia elementu
+				tablica_N[j] = tablica_N[j + 1];
+			}
+			rozmiar_N--;
+		}
+
+		if (rozmiar_G != 0) {
+
+			long max_q = tablica_G[0].q;
+			long nr_max_q = tablica_G[0].j;
+			long p_max_q = tablica_G[0].p;
+			int indeks = 0; //id tablicy G w ktorym bylo q
+
+			for (int i = 1; i < rozmiar_G; i++) {
+
+				if (tablica_G[i].q > max_q) {
+					max_q = tablica_G[i].q;
+					nr_max_q = tablica_G[i].j;
+					p_max_q = tablica_G[i].p;
+					indeks = i;
+				}
+
+			}
+
+			for (int j = indeks; j < rozmiar_G - 1; j++) { //przesuwanie w celu usuniecia elementu
+				tablica_G[j] = tablica_G[j + 1];
+			}
+			rozmiar_G--;
+
+			pi[k - 1] = nr_max_q;
+			t = t + p_max_q;
+			k++;
+		}
+
+		else
+			t = min_r;
+	}
+
+	return pi;
 }
