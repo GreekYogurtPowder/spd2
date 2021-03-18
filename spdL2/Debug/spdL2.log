@@ -1,0 +1,7 @@
+﻿  instancja.cpp
+K:\PWR\VI sem\SPD\spd2\spdL2\RandomNumberGenerator.h(29,13): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
+  main.cpp
+K:\PWR\VI sem\SPD\spd2\spdL2\RandomNumberGenerator.h(29,13): warning C4244: "inicjowanie": konwersja z "double" do "float", możliwa utrata danych
+  zadanie.cpp
+  Generowanie kodu...
+  spdL2.vcxproj -> K:\PWR\VI sem\SPD\spd2\spdL2\Debug\spdL2.exe
