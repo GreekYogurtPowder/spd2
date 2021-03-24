@@ -7,14 +7,18 @@ using namespace std;
 int main()
 {
 	instancja inst = instancja();
-	inst.wypiszTabele();
-	//inst.calculate();
-	long* tab = inst.Schrage();
 	
-	cout << endl << endl;
-	for (int i = 0; i < 10; i++) {
-		cout <<tab[i] << " ";
-	}
+	cout << endl << "-----ZADANIA-----" << endl;
+	inst.wypiszTabele();
 
+	cout << endl << endl << "-----PRZED SCHREGE-----" << endl;
+	inst.calculate();
+
+	cout << endl << endl << "-----PO SCHREGE-----" << endl;
+	vector<long> pi = inst.Schrage();
+	inst.wypiszPi(pi);
+	inst.calculate(pi);
+
+	cout << endl << endl;
 	return 0;
 }
