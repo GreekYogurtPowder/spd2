@@ -25,7 +25,7 @@ instancja::instancja() {
 	}
 
 	for (int i = 0; i < rozmiar; i++) {
-		lista_zadan[i].q = generator.nextInt(1, 29);
+		lista_zadan[i].q = generator.nextInt(1, 29); //29 lub suma
 	}
 }
 
@@ -33,7 +33,7 @@ void instancja::wypiszTabele() {
 	cout << endl << "j: [";
 	for (int i = 0; i < rozmiar; i++) {
 		cout << lista_zadan[i].j;
-		if (i == rozmiar - 1) {
+		if (i == rozmiar - 1) { //jesli ostatni element
 			cout << "]";
 		}
 		else {
@@ -89,7 +89,7 @@ void instancja::wypiszPi(vector<long> pi) {
 	}
 }
 
-void instancja::calculate() {
+void instancja::calculate() { //przeciazenie, aby moc policzyc przed wykonaniem schrege
 	vector<long> pi;
 	for (int i = 0; i < rozmiar; i++) {
 		pi.push_back(lista_zadan[i].j);
@@ -104,7 +104,7 @@ void instancja::calculate(vector<long> pi) {
 	vector <zadanie> wektor_zadan_pi; //wekor zadan posortowany wedlug kolejnosci pi
 	long C_max = 0;
 
-	for (int i = 0; i < rozmiar; i++) {
+	for (int i = 0; i < rozmiar; i++) { //sortowanie listy zadan wedlug kolejnosci PI
 		for (int j = 0; j < rozmiar; j++) {
 			if (lista_zadan[j].j == pi[i]) {
 				wektor_zadan_pi.push_back(lista_zadan[j]);
@@ -112,7 +112,8 @@ void instancja::calculate(vector<long> pi) {
 		}
 	}
 
-	wektor_S.push_back(wektor_zadan_pi[0].r);
+	//wg pseudokodu
+	wektor_S.push_back(wektor_zadan_pi[0].r); 
 	wektor_C.push_back(wektor_S[0] + wektor_zadan_pi[0].p);
 	C_max = wektor_C[0] + wektor_zadan_pi[0].q;
 
@@ -168,7 +169,7 @@ static bool max_q(const zadanie& zad1, const zadanie& zad2) {
 
 vector<long> instancja::Schrage() {
 
-	int k = 1; //nr zadania w permutacji 
+	//int k = 1; //nr zadania w permutacji 
 	vector<long> pi; //permutacje
 	vector<zadanie> wektor_G; //wektor zadan gotowych do realizacji
 	vector<zadanie> wektor_N; //wektor zadan nieuszeregowanych
@@ -192,7 +193,7 @@ vector<long> instancja::Schrage() {
 		if (!wektor_G.empty()) {
 			sort(wektor_G.begin(), wektor_G.end(), max_q);
 			pi.push_back(wektor_G[0].j);
-			t = t + wektor_G[0].p;
+			t += wektor_G[0].p;
 			wektor_G.erase(wektor_G.begin());
 		}
 		else

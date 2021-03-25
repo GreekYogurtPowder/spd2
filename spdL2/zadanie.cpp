@@ -7,9 +7,9 @@ zadanie::zadanie() {
 	q = 0;
 }
 
-zadanie::zadanie(long new_j, long new_r, long new_p, long new_q) {
+/*zadanie::zadanie(long new_j, long new_r, long new_p, long new_q) {
 	j = new_j;
 	r = new_r;
 	p = new_p;
 	q = new_q;
-}
+}*/
